@@ -1,16 +1,17 @@
 const express = require("express");
 const app = express();
-// const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const cors = require("cors");
+app.use(cors());
+
 const routes = require("./routes");
 app.use(routes);
 
-const cors = require("cors");
-app.use(cors);
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(PORT, () => {
   console.log(`server has started on port ${process.env.PORT || 5000}`);
 });
